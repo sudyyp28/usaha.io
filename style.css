@@ -1,0 +1,10 @@
+body {
+  min: heigh 3000px;
+}
+.jumbotron {
+  padding-top: 2rem 1rem;
+  background-color: #aff8e8;
+}
+#projects {
+  background-color: #aff8e8;
+}
