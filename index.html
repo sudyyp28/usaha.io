@@ -21,9 +21,10 @@
       }
     </style>
   </head>
-  <body>
-    <!-- navbar (ctrl+/)-->
-    <nav class="navbar navbar-expand-lg navbar-light shadow-lg" style="background-color: #38f396">
+  <body id="home"> 
+
+    <!-- navbar (ctrl+/)fix top-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light shadow-lg" style="background-color: #38f396">
       <div class="container">
         <a class="navbar-brand" href="#">Sudyanto</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,13 +36,13 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Project</a>
+              <a class="nav-link" href="#projects">Project</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="#contacs">Contact</a>
             </li>
           </ul>
         </div>
@@ -50,7 +51,7 @@
     <!-- akhir navbar -->
     <!-- jumbotron -->
     <section class="jumbotron text-center">
-      <img src="img/sudyanto.jpg" alt="sudy" width="200" class="rounded-circle img-thumbnail" />
+      <img src="img/sudyanto.jpg" alt="sudy" width="200" class="rounded-circle img-thumbnail"/>
       <h1 class="display-4">Sudyanto</h1>
       <p class="lead">Design Grafis | Technical</p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -160,32 +161,78 @@
       </div>
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <form>
+
+<!-- pesan dismissing -->
+<div class="alert alert-succes alert-dismissible fade show d-none my-Alert" role="alert">
+  <strong>Terimakasih</strong> Pesan Anda Sudah Kami Terima..
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+        <form name="sudy-porto-form">
           <div class="mb-3">
             <label for="name" class="form-label">Nama Lengkap</label>
-            <input type="text" class="form-control" id="name" aria-describedby="name" />
+            <input type="text" class="form-control" id="name" aria-describedby="name" name="nama"/>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="email" />
+            <input type="email" class="form-control" id="email" aria-describedby="email" name="email" />
           </div>
           <div class="mb-3">
             <label for="pesan" class="form-label">Pesan</label>
-            <textarea class="form-control" id="pesan" rows="3"></textarea>
+            <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
           </div>
-          <button type="kirim" class="btn btn-primary">Kirim</button>
+
+          <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
+
+          <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+
         </form>
       </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#20c997" fill-opacity="1" d="M0,32L48,26.7C96,21,192,11,288,58.7C384,107,480,213,576,218.7C672,224,768,128,864,117.3C960,107,1056,181,1152,197.3C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
     </section>
 
     <!-- Akhir Contacts -->
 
     <!-- Footer -->
-    <footer>
-      <p>Created by <a href="https://niknokbatik.wordpress.com/">Websiteku</a></p>
+    <footer class="footer-light shadow-lg text-center pb-3" style="background-color: #20c997">
+      <p>Created by <a href="https://niknokbatik.wordpress.com/"class ="text-white fw-bold">Websiteku</a></p>
     </footer>
     <!-- Akhir footer -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxTNviXNebJaL67oNxcttgkhjKmKkTr6Qpk2vDJKR3tanCU0B39MhS_16maGNxRTMXi/exec"
+    const form = document.forms["sudy-porto-form"]
+    const btnKirim=document.querySelector(".btn-kirim");
+    const btnLoading=document.querySelector(".btn-loading");
+    const myAlert=document.querySelector(".my-Alert");
+  
+    form.addEventListener("submit", e => {
+      e.preventDefault()
+
+      //Ketika tombol Submit di "Klik"
+      //Tampilkan tombol Loading,hilangkan tombol Kirim
+
+      btnLoading.classList.toggle("d-none");
+      btnKirim.classList.toggle("d-none");
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          //Tampilkan tombol kirim,hilangkan tombol Loading
+          btnLoading.classList.toggle("d-none");
+          btnKirim.classList.toggle("d-none");
+          // Tampilkan Alert
+          myAlert.classList.toggle("d-none");
+          // Reset Form
+          form.reset();
+          console.log("Success!", response);
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+
+  </script>
   </body>
 </html>
