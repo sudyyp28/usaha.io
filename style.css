@@ -1,13 +1,115 @@
+
+
+/* navbar */
+.navbar-brand {
+  font-family: madimi one;
+  font-size: 32px;
+}
+
 body {
-  min: heigh 3000px;
+
+min-height: 3000px;
+background-color: rgb(209, 161, 41);
+
 }
 .jumbotron {
   background-color: #aff8e8;
-  padding-top: 6rem;
-}
-#projects {
+  padding-top: 4rem;
+  background-size: cover;
+  height: 640px;
+  text-align: center;
+  position:relative;
+  background-image: url(img/gambar1.jpg);
+  margin-top: -60px;
+  }
+  
+  /* posisi display-4 & button "our work" supaya terlihat */
+  .jumbotron .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* gradasi warna pada jumbotron */
+  .jumbotron::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 80%;
+    background-image: linear-gradient(to top, rgba(102, 61, 61, 0.973), rgba(0, 0, 0, 0));
+    position: absolute;
+    bottom: 0;
+  }
+
+.projects {
   background-color: #aff8e8;
+  border-radius: 20px;
 }
 section {
   padding-top: 5rem;
 }
+.card {
+  border-radius: 10px;
+  margin-top: 15px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+  /* CSS untuk merubah ukuran gambar spesifik */
+.card img[src="img/projects/1.jpg"]{
+  width: 285px; 
+  height: 200px; 
+  margin-left: 5px;
+  margin-top: 5px;
+  }
+
+  .card img[src="img/projects/7.jpg"],[src="img/projects/8.jpg"]{
+    width: 285px;
+    height: 430px;
+  }
+  .card img[src="img/projects/9.jpg"]{
+    width: 285px;
+    height: 430px;
+  }
+
+.jumbotron  .display-4{
+  font-size: 64px;
+  margin-top: 200px;
+  font-weight: 300;
+}
+  
+.jumbotron .display-4 span{
+  font-size: 64px;
+}
+
+.jumbotron .container {
+  position: relative;
+  z-index: 1;
+}
+.jumbotron h1 span {
+  font-family: madimi one;
+}
+.container span {
+  font-family: madimi one;
+  font-size: 36px;
+}
+
+@media (min-width: 992px) {
+  .navbar-brand,
+  .nav-link {
+    color: rgb(240, 244, 248) !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0.1);
+  }
+  .nav-link {
+    text-transform: uppercase;
+    margin-right: 30px;
+  }
+
+  .nav-link:hover::after {
+    content: '';
+    display: block;
+    border-bottom: 3px solid rgba(160, 68, 7, 0.867);
+    width: 50%;
+    margin: auto;
+    /* setting agar pada waktu disorot navbar tdk bergerak */
+    padding-bottom: 5px;
+    margin-bottom: -8px;
+  }
