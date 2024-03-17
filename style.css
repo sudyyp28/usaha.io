@@ -55,25 +55,29 @@ section {
 
   /* CSS untuk merubah ukuran gambar spesifik */
 .card img[src="img/projects/1.jpg"]{
-  width: 285px; 
-  height: 200px; 
-  margin-left: 5px;
+  width: 340px; 
+  height: 400px; 
+  margin-left: 40px;
   margin-top: 5px;
   }
 
   .card img[src="img/projects/7.jpg"],[src="img/projects/8.jpg"]{
     width: 285px;
     height: 430px;
+    margin-left: 40px;
+    margin-top: 5px;
   }
   .card img[src="img/projects/9.jpg"]{
     width: 285px;
     height: 430px;
+    margin-left: 40px;
+    margin-top: 5px;
   }
 
 .jumbotron  .display-4{
   font-size: 64px;
   margin-top: 200px;
-  font-weight: 300;
+  font-weight: 300px;
 }
   
 .jumbotron .display-4 span{
